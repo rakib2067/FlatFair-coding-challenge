@@ -47,4 +47,21 @@ export class OrganisationStructure {
     traverse(current);
     return results;
   }
+  //Gets branches by area
+  getByArea(area: string) {
+    if (!this.root) return [];
+
+    let current = this.root;
+    let results: OrganisationUnitNode[] = [];
+    //Recursively checks and pushes children in order
+    function traverse(node: OrganisationUnitNode) {
+      if (!node.children.length && node.parent?.name == area)
+        results.push(node);
+      else {
+        node.children.forEach((child) => traverse(child));
+      }
+    }
+    traverse(current);
+    return results;
+  }
 }

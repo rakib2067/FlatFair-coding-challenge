@@ -16,6 +16,9 @@ describe("Caculate Membership Fee for default cases", () => {
   test("It returns the correct fee for weekly rentAmount within the threshold", () => {
     expect(calculateMembershipFee(200, "week", testBranch)).toEqual(24000);
   });
+  test("It returns the correct fee for monthly rentAmount within the threshold", () => {
+    expect(calculateMembershipFee(2000, "month", testBranch)).toEqual(55385);
+  });
   test("It returns an Error for values below the threshold - weekly", () => {
     expect(calculateMembershipFee(24, "week", testBranch)).toBeInstanceOf(
       Error
